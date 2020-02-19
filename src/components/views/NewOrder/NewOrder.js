@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './NewEvent.module.scss';
+import styles from './NewOrder.module.scss';
 
 const NewOrder = () => {
   return (
