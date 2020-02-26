@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './NewOrder.module.scss';
 
 const NewOrder = () => {
   return (
-    <div className={styles.component}>
+    <div>
       <h2>NewOrder view</h2>
     </div>
   );

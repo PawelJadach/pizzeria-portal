@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './TableBooking.module.scss';
 
 const TableBooking = () => {
   return (
-    <div className={styles.component}>
+    <div>
       <h2>TableBooking view</h2>
     </div>
   );

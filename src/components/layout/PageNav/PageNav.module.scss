@@ -1,24 +1,14 @@
-.navLink {
-  margin-left: 20px;
-  text-transform: uppercase;
-  color: black;
-  font-weight: bold;
-  font-family: Arial;
-  text-decoration: none;
-
-  &:hover {
-    color: peru;
-  }
+.link {
+  color: inherit;
 }
-
 
 .active {
   color: peru;
 }
 
-
-
-
+.right {
+  margin-left: auto;
+}
 
 
 

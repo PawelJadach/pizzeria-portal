@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './Dashboard.module.scss';
 
 const Dashboard = () => {
   return (
-    <div className={styles.component}>
+    <div>
       <h2>Dashboard view</h2>
     </div>
   );

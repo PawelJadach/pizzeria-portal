@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './Event.module.scss';
 
 const Event = () => {
   return (
-    <div className={styles.component}>
+    <div>
       <h2>Event view</h2>
     </div>
   );

@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './Tables.module.scss';
 import { Link } from 'react-router-dom';
 
 const Tables = () => {
   return (
-    <div className={styles.component}>
+    <div>
       <nav>
         <Link exact to={process.env.PUBLIC_URL + '/tables/booking/new'} activeClassName='active'>New Booking</Link>
         <Link exact to={process.env.PUBLIC_URL + '/tables/booking/123'} activeClassName='active'>Book 123</Link>
