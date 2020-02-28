@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Waiter.module.scss';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,12 +10,12 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const demoContent = [
-  {id: '1', status: 'free', order: null},
-  {id: '2', status: 'thinking', order: null},
-  {id: '3', status: 'ordered', order: 123},
-  {id: '4', status: 'prepared', order: 234},
-  {id: '5', status: 'delivered', order: 345},
-  {id: '6', status: 'paid', order: 456},
+  {id: '1', lastChange: '10',status: 'free', order: null},
+  {id: '2', lastChange: '13',status: 'thinking', order: null},
+  {id: '3', lastChange: '21',status: 'ordered', order: 123},
+  {id: '4', lastChange: '1',status: 'prepared', order: 234},
+  {id: '5', lastChange: '21',status: 'delivered', order: 345},
+  {id: '6', lastChange: '9',status: 'paid', order: 456},
 ];
 
 const renderActions = status => {
@@ -22,29 +23,29 @@ const renderActions = status => {
     case 'free':
       return (
         <>
-          <Button>thinking</Button>
-          <Button>new order</Button>
+          <Button variant='contained' color='primary'>thinking</Button>
+          <Button className={styles.withMargin} variant='contained' color='primary'>new order</Button>
         </>
       );
     case 'thinking':
       return (
-        <Button>new order</Button>
+        <Button variant='contained' color='primary'>new order</Button>
       );
     case 'ordered':
       return (
-        <Button>prepared</Button>
+        <Button variant='contained' color='primary'>prepared</Button>
       );
     case 'prepared':
       return (
-        <Button>delivered</Button>
+        <Button variant='contained' color='primary'>delivered</Button>
       );
     case 'delivered':
       return (
-        <Button>paid</Button>
+        <Button variant='contained' color='primary'>paid</Button>
       );
     case 'paid':
       return (
-        <Button>free</Button>
+        <Button variant='contained' color='primary'>free</Button>
       );
     default:
       return null;
@@ -52,12 +53,13 @@ const renderActions = status => {
 };
 
 const Waiter = () => (
-  <Paper className={styles.component}>
+  <Paper className={styles.wrapper}>
     <Table>
       <TableHead>
         <TableRow>
           <TableCell>Table</TableCell>
           <TableCell>Status</TableCell>
+          <TableCell>Last Change</TableCell>
           <TableCell>Order</TableCell>
           <TableCell>Action</TableCell>
         </TableRow>
@@ -72,10 +74,15 @@ const Waiter = () => (
               {row.status}
             </TableCell>
             <TableCell>
+              {row.lastChange} min
+            </TableCell>
+            <TableCell>
               {row.order && (
-                <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
-                  {row.order}
-                </Button>
+                <Link exact to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`} className={styles.link}>
+                  <Button variant='text' color='primary'>
+                    {row.order}
+                  </Button>
+                </Link>
               )}
             </TableCell>
             <TableCell>
