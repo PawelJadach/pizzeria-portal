@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Login.module.scss';
+import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -29,9 +30,11 @@ const Login = () => {
           variant='standard'
           color='primary'
         />
-        <Button className={styles.button} variant="contained" color="primary" fullWidth>
-          Zaloguj
-        </Button>
+        <Link exact to={process.env.PUBLIC_URL + `/`} activeClassName='active'>
+          <Button className={styles.button} variant="contained" color="primary" fullWidth>
+            Zaloguj
+          </Button>
+        </Link>
       </form>
     </div>
   );
