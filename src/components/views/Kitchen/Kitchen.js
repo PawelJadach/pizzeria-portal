@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Kitchen.module.scss';
-import { Link } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
