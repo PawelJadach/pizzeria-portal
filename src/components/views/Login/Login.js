@@ -30,7 +30,7 @@ const Login = () => {
           variant='standard'
           color='primary'
         />
-        <Link exact to={process.env.PUBLIC_URL + `/`} activeClassName='active'>
+        <Link exact to={process.env.PUBLIC_URL + `/`} className={styles.link}>
           <Button className={styles.button} variant="contained" color="primary" fullWidth>
             Zaloguj
           </Button>
