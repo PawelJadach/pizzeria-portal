@@ -83,7 +83,7 @@ const Dashboard = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Typography variant="h4" align='center' color='primary'>Statystyki dzisiejszych zamówień</Typography>
+      <Typography variant="h5" align='center' className={styles.title}  color='primary'>Statystyki dzisiejszych zamówień</Typography>
       <TableContainer component={Paper} className={styles.table}>
         <Table aria-label="simple table">
           <TableHead>
@@ -107,7 +107,7 @@ const Dashboard = () => {
         </Table>
       </TableContainer>
 
-      <Typography variant="h4" align='center' color='primary'>Dzisiejsze rezerwacje i eventy</Typography>
+      <Typography variant="h5" align='center' className={styles.title} color='primary'>Dzisiejsze rezerwacje i eventy</Typography>
       <div className={styles.reservation}>
         {reservation.map(reserv => (
           <Card className={styles.card} key={reserv.id}>
