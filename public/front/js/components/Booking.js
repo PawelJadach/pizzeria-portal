@@ -180,14 +180,14 @@ class Booking {
       table,
       duration,
       ppl,
-      starters
+      starters,
     };
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     };
 
     fetch(url, options)
@@ -211,7 +211,7 @@ class Booking {
     const params = {
       booking: [startDayParam, endDateParam],
       eventsCurrent: [settings.db.notRepeatParam, startDayParam, endDateParam],
-      eventsRepeat: [settings.db.repeatParam, endDateParam]
+      eventsRepeat: [settings.db.repeatParam, endDateParam],
     };
     //console.log(params);
     const urls = {
@@ -232,13 +232,13 @@ class Booking {
         '/' +
         settings.db.event +
         '?' +
-        params.eventsRepeat.join('&')
+        params.eventsRepeat.join('&'),
     };
     // console.log(urls);
     Promise.all([
       fetch(urls.booking),
       fetch(urls.eventsCurrent),
-      fetch(urls.eventsRepeat)
+      fetch(urls.eventsRepeat),
     ])
       .then(function(res) {
         const bookingRes = res[0];
@@ -247,7 +247,7 @@ class Booking {
         return Promise.all([
           bookingRes.json(),
           eventsCurrentRes.json(),
-          eventsRepeatRes.json()
+          eventsRepeatRes.json(),
         ]);
       })
       .then(function([bookingRes, eventsCurrentRes, eventsRepeatRes]) {

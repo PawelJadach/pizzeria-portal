@@ -63,8 +63,8 @@ class CartProduct {
     const event = new CustomEvent('remove', {
       bubbles: true,
       detail: {
-        cartProduct: thisCartProduct
-      }
+        cartProduct: thisCartProduct,
+      },
     });
     thisCartProduct.dom.wrapper.dispatchEvent(event);
   }
@@ -90,7 +90,7 @@ class CartProduct {
       amount: thisCartProduct.amount,
       price: thisCartProduct.price,
       priceSingle: thisCartProduct.priceSingle,
-      params: thisCartProduct.params
+      params: thisCartProduct.params,
     };
 
     return data;

@@ -101,20 +101,20 @@ const app = {
         title: 'Quotations 1',
         content:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nuncsed dolor at elit lobortis sodales.',
-        signature: '- Lorem ipsum 1'
+        signature: '- Lorem ipsum 1',
       },
       {
         title: 'Quotations 2',
         content:
           'Lorem ipsura tortor, eu ullamcorper dui imperdiet nec. Nuncsed dolor at elit lobortis sodales.',
-        signature: '- Lorem ipsum 2'
+        signature: '- Lorem ipsum 2',
       },
       {
         title: 'Quotations 3',
         content:
           'Loremsectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nuncsed dolor at elit lobortis sodales.',
-        signature: '- Lorem ipsum 3'
-      }
+        signature: '- Lorem ipsum 3',
+      },
     ];
     const imgContainer = document.querySelector('.carousel div.img');
     const wheels = document.querySelectorAll('.carousel i');
@@ -145,7 +145,7 @@ const app = {
       if (index === 5) index = 3;
       else index++;
     }, 3000);
-  }
+  },
 };
 
 app.init();

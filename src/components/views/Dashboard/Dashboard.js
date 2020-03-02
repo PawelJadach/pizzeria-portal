@@ -128,7 +128,7 @@ const Dashboard = () => {
               ))}
             </CardContent>
             <CardActions>
-              <Link exact to={process.env.PUBLIC_URL + `/tables/booking/${reserv.id}`} className={styles.link}>
+              <Link exact='true' to={process.env.PUBLIC_URL + `/tables/booking/${reserv.id}`} className={styles.link}>
                 <Button variant='contained' size="small" color='primary'>Więcej</Button>
               </Link>
             </CardActions>
@@ -153,7 +153,7 @@ const Dashboard = () => {
               ))}
             </CardContent>
             <CardActions>
-              <Link exact to={process.env.PUBLIC_URL + `/tables/events/${event.id}`} activeClassName='active'>
+              <Link exact='true' to={process.env.PUBLIC_URL + `/tables/events/${event.id}`} activeclassname='active'>
                 <Button variant='contained' size="small" color='primary'>Więcej</Button>
               </Link>
             </CardActions>

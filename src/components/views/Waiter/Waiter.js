@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
+
 const demoContent = [
   {id: '1', lastChange: '10',status: 'free', order: null},
   {id: '2', lastChange: '13',status: 'thinking', order: null},
@@ -17,6 +18,7 @@ const demoContent = [
   {id: '5', lastChange: '21',status: 'delivered', order: 345},
   {id: '6', lastChange: '9',status: 'paid', order: 456},
 ];
+
 
 const renderActions = status => {
   switch (status) {
@@ -54,6 +56,11 @@ const renderActions = status => {
 
 const Waiter = () => (
   <Paper className={styles.wrapper}>
+    <Link exact to={process.env.PUBLIC_URL + '/waiter/order/new'} className={styles.link}>
+      <Button color="primary" variant='contained' size='large' className={styles.new} fullWidth>
+        Dodaj zamówienie
+      </Button>
+    </Link>
     <Table>
       <TableHead>
         <TableRow>
