@@ -94,6 +94,7 @@ price = () => {
   let price = 0;
   this.state.options.map(option => {
     price += Number(option.slice(option.lastIndexOf('-')+1));
+    return null;
   });
   return price;
 }
