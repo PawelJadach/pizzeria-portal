@@ -71,19 +71,20 @@ handleChange = (e) => {
         }
         break;
       case 'breakfast':
-        if(!this.state.options.includes('breakfast-Zia Giulias Breakfast-9' && e.target.value !== 'breakfast-Zia Giulias Breakfast-9')) {
+        if(!this.state.options.includes('breakfast-Zia Giulias Breakfast-9') && e.target.value !== 'breakfast-Zia Giulias Breakfast-9') {
           newOptions.push('breakfast-Zia Giulias Breakfast-9');
         }
         break;
       case 'salad':
-        if(!this.state.options.includes('salad-Nonno Albertos Salad-9' && e.target.value !== 'salad-Nonno Albertos Salad-9')) {
+        console.log(!this.state.options.includes('salad-Nonno Albertos Salad-9'));
+        if(!this.state.options.includes('salad-Nonno Albertos Salad-9') && e.target.value !== 'salad-Nonno Albertos Salad-9') {
           newOptions.push('salad-Nonno Albertos Salad-9');
         }
         break;
 
       default: break;
     }
-    // console.log(newOptions);
+    console.log(newOptions);
     this.setState({
       options: newOptions,
     });
