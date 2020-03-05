@@ -26,18 +26,26 @@ class Waiter extends React.Component {
     fetchTables();
   }
 
+  renderNewOrderButton(){
+    return (
+      <Link to={`${process.env.PUBLIC_URL}/waiter/order/new`} className={styles.link}>
+        <Button>new order</Button>
+      </Link>
+    );
+  }
+
   renderActions(status){
     switch (status) {
       case 'free':
         return (
           <>
             <Button>thinking</Button>
-            <Button>new order</Button>
+            {this.renderNewOrderButton()}
           </>
         );
       case 'thinking':
         return (
-          <Button>new order</Button>
+          this.renderNewOrderButton()
         );
       case 'ordered':
         return (
@@ -62,6 +70,7 @@ class Waiter extends React.Component {
 
   render() {
     const { loading: { active, error }, tables } = this.props;
+    // console.log(tables);
     if(active || !tables.length){
       return (
         <Paper className={styles.component}>
@@ -78,11 +87,17 @@ class Waiter extends React.Component {
     } else {
       return (
         <Paper className={styles.component}>
+          <Link exact to={process.env.PUBLIC_URL + `/waiter/order/new`} className={styles.link}>
+            <Button color="primary" variant='contained' size='large' className={styles.new} fullWidth>
+              Dodaj nowe zamówienie
+            </Button>
+          </Link>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Table</TableCell>
                 <TableCell>Status</TableCell>
+                <TableCell>Last Update</TableCell>
                 <TableCell>Order</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
@@ -95,6 +110,9 @@ class Waiter extends React.Component {
                   </TableCell>
                   <TableCell>
                     {row.status}
+                  </TableCell>
+                  <TableCell>
+                    {row.lastUpdate} min
                   </TableCell>
                   <TableCell>
                     {row.order && (

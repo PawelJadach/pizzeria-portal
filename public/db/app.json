@@ -280,32 +280,38 @@
     {
       "id": 1,
       "status": "free",
-      "order": null
+      "order": null,
+      "lastUpdate": 12
     },
     {
       "id": 2,
       "status": "thinking",
-      "order": null
+      "order": null,
+      "lastUpdate": 9
     },
     {
       "id": 3,
       "status": "ordered",
-      "order": 123
+      "order": 123,
+      "lastUpdate": 30
     },
     {
       "id": 4,
       "status": "prepared",
-      "order": 234
+      "order": 234,
+      "lastUpdate": 2
     },
     {
       "id": 5,
       "status": "delivered",
-      "order": 345
+      "order": 345,
+      "lastUpdate": 27
     },
     {
       "id": 6,
       "status": "paid",
-      "order": 456
+      "order": 456,
+      "lastUpdate": 18
     }
   ]
 }

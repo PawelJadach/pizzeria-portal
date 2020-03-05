@@ -1,23 +1,23 @@
 # Dashboard
 
   - /
-    - satystyki dzisiejszych zamówień (zdalne, lokalne)
-    - lista rezerwacji i eventów zaplanowanych na dzisiaj
+    - satystyki dzisiejszych zamówień (zdalne, lokalne) x
+    - lista rezerwacji i eventów zaplanowanych na dzisiaj x
 
 # Logowanie
 
-  - /login
-    - login, hasło oraz guzik do zalogowania (link do dashboard)
+  - /login x
+    - login, hasło oraz guzik do zalogowania (link do dashboard) x
 
 # Dostepność stolików
 
   - /tables
     - wybór daty i godziny
-    - tabela z listą rezerwacji oraz wydarzeń
-      - każda kolumna to jeden stolik
-      - każdy wiersz to 30min
-      - ma przypominać widok tygodnia w kalendarzu google, gdzie w kolumnach zamiast dni są różne stoliki
-      - po kliknięciu rezerwacji lub eventu przechodzimy na stronę szczegółów
+    - tabela z listą rezerwacji oraz wydarzeń x
+      - każda kolumna to jeden stolik x
+      - każdy wiersz to 30min x
+      - ma przypominać widok tygodnia w kalendarzu google, gdzie w kolumnach zamiast dni są różne stoliki x
+      - po kliknięciu rezerwacji lub eventu przechodzimy na stronę szczegółów x
   - /tables/booking/:id
     - wszystkie informacje dotyczące rezerwacji
     - umożliwia edycję i zapisanie zmian
@@ -31,12 +31,12 @@
 
 # Kelner
 
-  - /waiter <- lista stolików i aktualny status
+  - /waiter <- lista stolików i aktualny status x
     - tabela
       - w wierszach wyświetla stoliki
       - w kolumnach informacje (status, czas od ostatniej aktywności)
       - w ostatniej kolumnie mamy dostępne akcje dla danego stolika
-  - /waiter/order/new <- nowe zamówienie
+  - /waiter/order/new <- nowe zamówienie x
     - numer stolika (edytowalny)
     - menu produktów
     - opcje wybranego produktu
