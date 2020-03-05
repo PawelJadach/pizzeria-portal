@@ -25,14 +25,10 @@ export const fetchFromAPI = () => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());
     //console.log(`${api.url}/${api.tables}`);
-    const config = {
-      headers: {'Access-Control-Allow-Origin': '*'},
-      crossdomain: true,
-    };
     axios
-      .get(`${api.url}/${api.tables}`, config)
+      .get(`${api.url}/${api.tables}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         dispatch(fetchSuccess(res.data));
       })
       .catch(err => {

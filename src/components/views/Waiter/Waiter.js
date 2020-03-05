@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import styles from './Waiter.module.scss';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,7 +18,7 @@ class Waiter extends React.Component {
       active: PropTypes.bool,
       error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     }),
-    tables: PropTypes.object,
+    tables: PropTypes.array,
   }
 
   componentDidMount(){
@@ -60,7 +62,6 @@ class Waiter extends React.Component {
 
   render() {
     const { loading: { active, error }, tables } = this.props;
-    // console.log(tables);
     if(active || !tables.length){
       return (
         <Paper className={styles.component}>
@@ -97,8 +98,10 @@ class Waiter extends React.Component {
                   </TableCell>
                   <TableCell>
                     {row.order && (
-                      <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
-                        {row.order}
+                      <Button>
+                        <Link className={styles.link} to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
+                          {row.order}
+                        </Link>
                       </Button>
                     )}
                   </TableCell>
