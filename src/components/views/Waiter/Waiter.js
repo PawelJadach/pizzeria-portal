@@ -27,11 +27,14 @@ class Waiter extends React.Component {
     fetchTables();
   }
 
-  renderNewOrderButton(){
+  renderNewOrderButton(id){
     return (
-      <Link to={`${process.env.PUBLIC_URL}/waiter/order/new`} className={styles.link}>
-        <Button>new order</Button>
-      </Link>
+      <>
+        <Link to={`${process.env.PUBLIC_URL}/waiter/order/new`} className={styles.link}>
+          <Button>new order</Button>
+        </Link>
+        <Button onClick={() => this.handleClick(id, 'free')}>free</Button>
+      </>
     );
   }
 
@@ -45,12 +48,11 @@ class Waiter extends React.Component {
         return (
           <>
             <Button onClick={() => this.handleClick(id, 'thinking')}>thinking</Button>
-            {this.renderNewOrderButton()}
           </>
         );
       case 'thinking':
         return (
-          this.renderNewOrderButton()
+          this.renderNewOrderButton(id)
         );
       case 'ordered':
         return (
