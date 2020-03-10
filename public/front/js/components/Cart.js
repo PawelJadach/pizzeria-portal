@@ -80,11 +80,12 @@ class Cart {
         return res.json();
       })
       .then(parsedRes => console.log(parsedRes));
+    console.log(payload);
   }
 
   add(menuProduct){
-    const thisCart = this; 
-      
+    const thisCart = this;
+
     //console.log('adding product', menuProduct);
     const generatedHTML = templates.cartProduct(menuProduct);
     // console.log(this);
@@ -92,7 +93,7 @@ class Cart {
     thisCart.products.push(new CartProduct(menuProduct, thisCart.element));
     //console.log(thisCart.dom.productList)
     const cartContainer = document.querySelector(select.cart.productList);
-      
+
     cartContainer.appendChild(thisCart.element);
     this.update();
   }
@@ -102,13 +103,13 @@ class Cart {
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
     for(let product of thisCart.products){
-       
+
       thisCart.subtotalPrice += product.price;
       thisCart.totalNumber += product.amount;
     }
     if(!thisCart.totalNumber) thisCart.totalPrice = 0;
     else thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
-      
+
     for(let key of thisCart.renderTotalsKeys){
       for(let elem of thisCart.dom[key]){
         //console.log(thisCart);
@@ -123,7 +124,7 @@ class Cart {
     const index = thisCart.products.indexOf(cartProduct);
     thisCart.products.splice(index, 1);
     cartProduct.dom.wrapper.remove();
-      
+
     thisCart.update();
   }
 }

@@ -12,6 +12,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import { api } from '../../../settings';
+import axios from 'axios';
+
 // console.log(products);
 
 
@@ -76,7 +79,7 @@ handleChange = (e) => {
         }
         break;
       case 'salad':
-        console.log(!this.state.options.includes('salad-Nonno Albertos Salad-9'));
+        // console.log(!this.state.options.includes('salad-Nonno Albertos Salad-9'));
         if(!this.state.options.includes('salad-Nonno Albertos Salad-9') && e.target.value !== 'salad-Nonno Albertos Salad-9') {
           newOptions.push('salad-Nonno Albertos Salad-9');
         }
@@ -84,7 +87,7 @@ handleChange = (e) => {
 
       default: break;
     }
-    console.log(newOptions);
+    // console.log(newOptions);
     this.setState({
       options: newOptions,
     });
@@ -105,6 +108,74 @@ handleTableChange = (e) => {
   this.setState({
     table: e.target.value,
   });
+}
+
+handleSubmit = (e) => {
+  e.preventDefault();
+  const products = [];
+
+  if(this.state.options.length > 0){
+    this.state.options.map(option => {
+
+      if(option === 'pizza-Nonna Albas Pizza-20') {
+
+        const params = [];
+        this.state.options.map(option => {
+          if(option.slice(0, option.indexOf('-')) === 'pizza' && option !== 'pizza-Nonna Albas Pizza-20') return params.push(option.slice(option.indexOf('-') + 1, option.lastIndexOf('-')));
+          else return null;
+        });
+
+        products.push({
+          id: 'pizza',
+          params,
+        });
+
+      }
+      if(option === 'salad-Nonno Albertos Salad-9'){
+
+        const params = [];
+        this.state.options.map(option => {
+          if(option.slice(0, option.indexOf('-')) === 'salad' && option !== 'salad-Nonno Albertos Salad-9') return params.push(option.slice(option.indexOf('-') + 1, option.lastIndexOf('-')));
+          else return null;
+        });
+
+        products.push({
+          id: 'salad',
+          params,
+        });
+      }
+      if(option === 'breakfast-Zia Giulias Breakfast-9'){
+        const params = [];
+        this.state.options.map(option => {
+          if(option.slice(0, option.indexOf('-')) === 'breakfast' && option !== 'breakfast-Zia Giulias Breakfast-9') return params.push(option.slice(option.indexOf('-') + 1, option.lastIndexOf('-')));
+          else return null;
+        });
+        products.push({
+          id: 'breakfast',
+          params,
+        });
+      }
+
+      if(option === 'cake-Zio Stefanos Doughnut-9') products.push({
+        id: 'cake',
+      });
+
+      return null;
+    });
+  }
+
+  axios
+    .post(`${api.url}/${api.order}`, {products, price: this.price, table: this.state.table})
+    .then(res => {
+      window.alert('Zamówienie złożone!');
+      this.setState({
+        table: 0,
+        options: [],
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 
 render(){
@@ -162,7 +233,7 @@ render(){
         <Typography color="primary" variant='h5' className={styles.price}>
             Wartość zamówienia: {this.price()}$
         </Typography>
-        <Button color="primary" variant='contained' size='large' className={styles.new} fullWidth>
+        <Button color="primary" variant='contained' size='large' className={styles.new} fullWidth onClick={this.handleSubmit}>
           Złóż zamówienie
         </Button>
       </Card>
