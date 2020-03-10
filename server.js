@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const jsonServer = require('json-server');
 const server = jsonServer.create();
+const cors = require('cors');
 const router = jsonServer.router('build/db/app.json');
 const middlewares = jsonServer.defaults({
   static: 'build',
@@ -11,11 +12,7 @@ const middlewares = jsonServer.defaults({
 });
 const port = process.env.PORT || 3131;
 
-server.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+server.use(cors());
 
 server.get(/^\/panel.*/, (req,res) =>{
   if(req.url === '/panel'){
@@ -28,6 +25,7 @@ server.get(/^\/panel.*/, (req,res) =>{
     res.sendFile(path.join(__dirname+'/build/index.html'));
   }
 });
+
 
 server.use(function(req, res, next) {
   const api = /^\/api(.*)$/.exec(req.url);

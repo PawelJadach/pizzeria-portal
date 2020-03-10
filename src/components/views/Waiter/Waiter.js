@@ -14,11 +14,12 @@ import Button from '@material-ui/core/Button';
 class Waiter extends React.Component {
   static propTypes = {
     fetchTables: PropTypes.func,
+    updateTableStatus: PropTypes.func,
     loading: PropTypes.shape({
       active: PropTypes.bool,
       error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     }),
-    tables: PropTypes.array,
+    tables: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   }
 
   componentDidMount(){
@@ -34,12 +35,16 @@ class Waiter extends React.Component {
     );
   }
 
-  renderActions(status){
+  handleClick = (id, status) => {
+    this.props.updateTableStatus(status, id);
+  }
+
+  renderActions(status, id){
     switch (status) {
       case 'free':
         return (
           <>
-            <Button>thinking</Button>
+            <Button onClick={() => this.handleClick(id, 'thinking')}>thinking</Button>
             {this.renderNewOrderButton()}
           </>
         );
@@ -49,19 +54,19 @@ class Waiter extends React.Component {
         );
       case 'ordered':
         return (
-          <Button>prepared</Button>
+          <Button onClick={() => this.handleClick(id, 'prepared')}>prepared</Button>
         );
       case 'prepared':
         return (
-          <Button>delivered</Button>
+          <Button onClick={() => this.handleClick(id, 'delivered')}>delivered</Button>
         );
       case 'delivered':
         return (
-          <Button>paid</Button>
+          <Button onClick={() => this.handleClick(id, 'paid')}>paid</Button>
         );
       case 'paid':
         return (
-          <Button>free</Button>
+          <Button onClick={() => this.handleClick(id, 'free')}>free</Button>
         );
       default:
         return null;
@@ -70,7 +75,6 @@ class Waiter extends React.Component {
 
   render() {
     const { loading: { active, error }, tables } = this.props;
-    // console.log(tables);
     if(active || !tables.length){
       return (
         <Paper className={styles.component}>
@@ -87,7 +91,7 @@ class Waiter extends React.Component {
     } else {
       return (
         <Paper className={styles.component}>
-          <Link exact to={process.env.PUBLIC_URL + `/waiter/order/new`} className={styles.link}>
+          <Link exact='true' to={process.env.PUBLIC_URL + `/waiter/order/new`} className={styles.link}>
             <Button color="primary" variant='contained' size='large' className={styles.new} fullWidth>
               Dodaj nowe zamówienie
             </Button>
@@ -124,7 +128,7 @@ class Waiter extends React.Component {
                     )}
                   </TableCell>
                   <TableCell>
-                    {this.renderActions(row.status)}
+                    {this.renderActions(row.status, row.id)}
                   </TableCell>
                 </TableRow>
               ))}

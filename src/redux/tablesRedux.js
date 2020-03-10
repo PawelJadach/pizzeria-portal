@@ -14,26 +14,43 @@ const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 
+const UPDATE_STATUS = createActionName('UPDATE_STATUS');
+
+
+
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+
+export const updateStatus = (status, id) => ({ status, id, type: UPDATE_STATUS });
+
 
 
 /* thunk creators */
 export const fetchFromAPI = () => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());
-    //console.log(`${api.url}/${api.tables}`);
     axios
       .get(`${api.url}/${api.tables}`)
       .then(res => {
-        // console.log(res);
         dispatch(fetchSuccess(res.data));
       })
       .catch(err => {
-        //console.log(err);
         dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const updateTableStatus = (status, id) => {
+  return (dispatch, getState) => {
+    axios
+      .put(`${api.url}/${api.tables}/${id}`, {id, status, order: null, lastUpdate: 0})
+      .then(res => {
+        dispatch(updateStatus(status, id));
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 };
@@ -68,6 +85,18 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
     }
+
+    case UPDATE_STATUS: {
+      return {
+        ...statePart,
+        data: statePart.data.map(table => {
+          if(action.id === table.id)
+            return { ...table, status: action.status };
+          else return table;
+        }),
+      };
+    }
+
     default:
       return statePart;
   }
